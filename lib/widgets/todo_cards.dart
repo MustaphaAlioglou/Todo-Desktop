@@ -18,9 +18,9 @@ class TodoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        updateTodoCompletions(index);
-      },
+        onTap: () {
+          updateTodoCompletions(index);
+        },
         child: FractionallySizedBox(
             widthFactor: 0.9,
             child: Card(

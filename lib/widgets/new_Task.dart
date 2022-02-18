@@ -21,10 +21,14 @@ class _NewTaskState extends State<NewTask> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextField(
-              controller: _todoController,
-              decoration: InputDecoration(labelText: "New to-do"),
-              maxLength: 20,
-            ),
+                onSubmitted: (value) {
+                  widget.addTask(_todoController.text);
+                  Navigator.of(context).pop();
+                },
+                controller: _todoController,
+                decoration: InputDecoration(labelText: "New to-do"),
+                maxLength: 20,
+                style: TextStyle(fontSize: 30)),
             TextButton(
                 onPressed: () {
                   widget.addTask(_todoController.text);
