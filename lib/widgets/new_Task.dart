@@ -28,6 +28,7 @@ class _NewTaskState extends State<NewTask> {
             TextButton(
                 onPressed: () {
                   widget.addTask(_todoController.text);
+                  Navigator.of(context).pop();
                 },
                 child: Text("Add"))
           ],

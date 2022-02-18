@@ -1,5 +1,7 @@
+import 'package:uuid/uuid.dart';
+
 class Todo {
-  String id;
+  Uuid id;
   String title;
   bool completed;
 
@@ -7,7 +9,5 @@ class Todo {
     required this.id,
     required this.title,
     required this.completed,
-
-
   });
 }

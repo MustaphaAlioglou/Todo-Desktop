@@ -12,7 +12,8 @@ class Counter extends StatelessWidget {
         margin: EdgeInsets.all(40),
         child: Text(
           "$totalCompletions/$numberOfTodos",
-          style: TextStyle(fontSize: 50),
+          style: TextStyle(fontSize: 50,
+          color: totalCompletions==numberOfTodos ? Colors.green : Colors.black),
         ));
   }
 }
