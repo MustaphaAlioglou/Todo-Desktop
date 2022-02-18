@@ -1,6 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:popcorn/counter.dart';
 import 'package:popcorn/models/todo.dart';
+import 'package:popcorn/widgets/new_Task.dart';
 import 'package:popcorn/widgets/todo_cards.dart';
 
 void main() {
@@ -30,11 +33,24 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Todo> todos = [
-    Todo(id: "id", title: "clean yourRoom", completed: true),
-    Todo(id: "id", title: "pet the cat", completed: false),
+    Todo(id: "id", title: "clean your Room", completed: true),
+    Todo(id: "id", title: "pet the cat", completed: true),
     Todo(id: "id", title: "join isis", completed: true)
-
   ];
+
+  int _calcTotalCompletions() {
+    var totalComletions = 0;
+    todos.forEach((element) {
+      if (element.completed) totalComletions++;
+    });
+    return totalComletions;
+  }
+
+  void showAddTodoModal(BuildContext context) {
+    showModalBottomSheet(context: context, builder: (bCtx) {
+      return NewTask();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,16 +58,24 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.blueAccent,
       body: Center(
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Counter(totalCompletions: 1,numberOfTodos: todos.length,),
-          ...todos.map((todo) => TodoCard(
-                title: todo.title,
-                completed: todo.completed,
-                id: todo.id,
-              ))
-        ],
-      )),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Counter(
+                totalCompletions: todos.length,
+                numberOfTodos: _calcTotalCompletions(),
+              ),
+              ...todos.map((todo) =>
+                  TodoCard(
+                    title: todo.title,
+                    completed: todo.completed,
+                    id: todo.id,
+                  ))
+            ],
+          )),
+      floatingActionButton:
+      FloatingActionButton(onPressed: () {
+        showAddTodoModal(context);
+      }, child: Icon(Icons.add)),
     );
   }
 }
