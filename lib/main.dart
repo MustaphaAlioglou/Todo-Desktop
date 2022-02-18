@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:popcorn/counter.dart';
+import 'package:popcorn/models/todo.dart';
 import 'package:popcorn/widgets/todo_cards.dart';
 
 void main() {
@@ -17,29 +18,39 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Todo> todos = [
+    Todo(id: "id", title: "clean yourRoom", completed: true),
+    Todo(id: "id", title: "pet the cat", completed: false),
+    Todo(id: "id", title: "join isis", completed: true)
+
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueAccent,
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-
-        children: <Widget>[Counter(), TodoCard(), TodoCard(), TodoCard()],
+        children: <Widget>[
+          Counter(totalCompletions: 1,numberOfTodos: todos.length,),
+          ...todos.map((todo) => TodoCard(
+                title: todo.title,
+                completed: todo.completed,
+                id: todo.id,
+              ))
+        ],
       )),
     );
   }
