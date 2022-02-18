@@ -23,7 +23,7 @@ class TodoCard extends StatelessWidget {
         onTap: () {
           updateTodoCompletions(index);
         },
-        onDoubleTap: (){
+        onDoubleTap: () {
           delete(index);
         },
         child: FractionallySizedBox(
@@ -38,8 +38,8 @@ class TodoCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(title,
-                      style:
-                          const TextStyle(fontSize: 30, fontWeight: FontWeight.w400)),
+                      style: const TextStyle(
+                          fontSize: 30, fontWeight: FontWeight.w400)),
                   Icon(completed ? Icons.check : Icons.close,
                       color: completed ? Colors.green : Colors.red)
                 ],
