@@ -5,6 +5,7 @@ import 'package:popcorn/counter.dart';
 import 'package:popcorn/models/todo.dart';
 import 'package:popcorn/widgets/new_Task.dart';
 import 'package:popcorn/widgets/todo_cards.dart';
+import 'package:popcorn/widgets/todo_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -54,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 void _addTask(String task){
     setState(() {
-      todos.add(Todo(id: "id", title: "title", completed: false)
+      todos.add(Todo(id: "id", title: task, completed: false)
       );
     });
 }
@@ -70,12 +71,7 @@ void _addTask(String task){
                 totalCompletions: todos.length,
                 numberOfTodos: _calcTotalCompletions(),
               ),
-              ...todos.map((todo) =>
-                  TodoCard(
-                    title: todo.title,
-                    completed: todo.completed,
-                    id: todo.id,
-                  ))
+              TodoList(todos: todos)
             ],
           )),
       floatingActionButton:

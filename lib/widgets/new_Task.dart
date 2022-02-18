@@ -23,6 +23,7 @@ class _NewTaskState extends State<NewTask> {
             TextField(
               controller: _todoController,
               decoration: InputDecoration(labelText: "New to-do"),
+              maxLength: 20,
             ),
             TextButton(
                 onPressed: () {
