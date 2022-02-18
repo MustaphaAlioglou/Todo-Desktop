@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -48,10 +49,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void showAddTodoModal(BuildContext context) {
     showModalBottomSheet(context: context, builder: (bCtx) {
-      return NewTask();
+      return NewTask(addTask: _addTask);
     });
   }
-
+void _addTask(String task){
+    setState(() {
+      todos.add(Todo(id: "id", title: "title", completed: false)
+      );
+    });
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(

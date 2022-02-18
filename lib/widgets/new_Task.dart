@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 class NewTask extends StatefulWidget {
+  final Function(String) addTask;
+
+  NewTask({required this.addTask});
+
   @override
   State<StatefulWidget> createState() => _NewTaskState();
 }
 
 class _NewTaskState extends State<NewTask> {
   var _todoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,9 +24,11 @@ class _NewTaskState extends State<NewTask> {
               controller: _todoController,
               decoration: InputDecoration(labelText: "New to-do"),
             ),
-            TextButton(onPressed: () {
-              print(_todoController.text);
-            }, child: Text("Add"))
+            TextButton(
+                onPressed: () {
+                  widget.addTask(_todoController.text);
+                },
+                child: Text("Add"))
           ],
         ));
   }
