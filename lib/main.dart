@@ -49,6 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _delete(int index) {
+    setState(() {
+      todos.removeAt(index);
+    });
+  }
+
   void showAddTodoModal(BuildContext context) {
     showModalBottomSheet(
         context: context,
@@ -59,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _addTask(String task) {
     setState(() {
-      todos.add(Todo(id: Uuid(), title: task, completed: false));
+      todos.add(Todo(id: const Uuid(), title: task, completed: false));
     });
   }
 
@@ -78,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
           TodoList(
             todos: todos,
             updateTodoCompletions: _updateTodoCompletions,
+            delete: _delete,
           )
         ],
       )),
@@ -85,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () {
             showAddTodoModal(context);
           },
-          child: Icon(Icons.add)),
+          child: const Icon(Icons.add)),
     );
   }
 }

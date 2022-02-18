@@ -9,7 +9,7 @@ class Counter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(40),
+        margin: const EdgeInsets.all(40),
         child: Text(
           "$totalCompletions/$numberOfTodos",
           style: TextStyle(

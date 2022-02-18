@@ -10,13 +10,13 @@ class NewTask extends StatefulWidget {
 }
 
 class _NewTaskState extends State<NewTask> {
-  var _todoController = TextEditingController();
+  final _todoController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Container(
         height: double.infinity,
-        margin: EdgeInsets.all(50),
+        margin: const EdgeInsets.all(50),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -26,15 +26,16 @@ class _NewTaskState extends State<NewTask> {
                   Navigator.of(context).pop();
                 },
                 controller: _todoController,
-                decoration: InputDecoration(labelText: "New to-do"),
+                decoration: const InputDecoration(labelText: "New Task"),
                 maxLength: 20,
-                style: TextStyle(fontSize: 30)),
+                style: const TextStyle(fontSize: 30)),
             TextButton(
+                style: TextButton.styleFrom(padding: const EdgeInsets.all(35),),
                 onPressed: () {
                   widget.addTask(_todoController.text);
                   Navigator.of(context).pop();
                 },
-                child: Text("Add"))
+                child: const Text("Add",style: TextStyle(fontSize: 25),))
           ],
         ));
   }
